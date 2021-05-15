@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+// const getSingleRole = adminRoles.find(result => {
+  //   return result.id == id ;
+  // })

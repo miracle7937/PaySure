@@ -1,0 +1,23 @@
+.caution-flex{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.caution-button{
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm{
+    background: #131573;
+    color: white;
+}
+
+.cancel {
+    border: 1px solid #131573;
+    color: #131573;
+}
