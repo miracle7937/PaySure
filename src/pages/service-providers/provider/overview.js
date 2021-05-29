@@ -1,6 +1,10 @@
 import React, { useState }  from 'react'
 import EditProvider from './editProvider'
 import FundProvider from './fundProvider'
+import NumberFormat from 'react-number-format';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 export default function Overview(props) {
 
   const [updateProvider, setEditProvider] = useState(false)
@@ -30,63 +34,55 @@ export default function Overview(props) {
                         <div  onClick={toggleEditProvider}style={{cursor:'pointer', background:'#131573'}} className="table-button">Edit Provider<span className="table-button-icon"></span></div>
                     </div>
                 </div>
-
-<div data-animation="slide" data-duration="500" data-infinite="1" className="content-slider w-slider">
-  <div className="mask w-slider-mask">
-    <div className="content-slide w-slide">
-      <div className="content-slide-box">
-        <div className="content-info-card">
-          <div className="div-block-2">
-            <div className="slide-card-header">Wallet Balance</div>
-            <div className="slide-card-value">₦{props.provider.balance}</div>
-          </div>
-          <div className="slide-card-icon green"></div>
-        </div>
-      </div>
+                <br/><br/>
+              <OwlCarousel className='owl-theme' loop margin={10} nav>
+    <div className='item'>
+    <div className="content-slide-box">
+                      <div className="content-info-card">
+                        <div className="div-block-2">
+                          <div className="slide-card-header">Wallet</div>
+                          <NumberFormat value={props.provider.balance} className="slide-card-value" displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
+                        </div>
+                        <div className="slide-card-icon green"></div>
+                      </div>
+                    </div>
     </div>
-    <div className="content-slide w-slide">
-      <div className="content-slide-box">
-        <div className="content-info-card">
-          <div className="div-block-2">
-            <div className="slide-card-header">Total Funded</div>
-            <div className="slide-card-value">₦{props.provider.totalFunded}</div>
-          </div>
-          <div className="slide-card-icon purple"></div>
-        </div>
-      </div>
+    {/* <div className='item'>
+    <div className="content-slide-box">
+                      <div className="content-info-card">
+                        <div className="div-block-2">
+                          <div className="slide-card-header">Commission</div>
+                          <NumberFormat value={props.wallet.commissionBalance} className="slide-card-value" displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
+                        </div>
+                        <div className="slide-card-icon green"></div>
+                      </div>
+                    </div>
+    </div> */}
+    <div className='item'>
+    <div className="content-slide-box">
+                      <div className="content-info-card">
+                        <div className="div-block-2">
+                          <div className="slide-card-header">Total Funded</div>
+                          <NumberFormat value={props.provider.totalFunded} className="slide-card-value" displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
+                        </div>
+                        <div className="slide-card-icon orange"></div>
+                      </div>
+                    </div>
     </div>
-    <div className="content-slide w-slide">
-      <div className="content-slide-box">
-        <div className="content-info-card">
-          <div className="div-block-2">
-            <div className="slide-card-header">Transactions</div>
-            <div className="slide-card-value">1000</div>
-          </div>
-          <div className="slide-card-icon blue"></div>
-        </div>
-      </div>
+    <div className='item'>
+    <div className="content-slide-box">
+                      <div className="content-info-card">
+                        <div className="div-block-2">
+                          <div className="slide-card-header">Transactions</div>
+                          <div className="slide-card-value">100</div>
+                        </div>
+                        <div className="slide-card-icon blue"></div>
+                      </div>
+                    </div>
     </div>
-    <div className="content-slide w-slide">
-      <div className="content-slide-box">
-        <div className="content-info-card">
-          <div className="div-block-2">
-            <div className="slide-card-header">Services</div>
-            <div className="slide-card-value">12</div>
-          </div>
-          <div className="slide-card-icon red"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className="content-slider-left-arrow w-slider-arrow-left">
-    <div className="w-icon-slider-left"></div>
-  </div>
-  <div className="content-slider-right-arrow w-slider-arrow-right">
-    <div className="w-icon-slider-right"></div>
-  </div>
-  <div className="slide-nav w-slider-nav w-slider-nav-invert w-round"></div>
-</div>
-<div className="basic-table-card">
+</OwlCarousel>
+<br/><br/>
+{/* <div className="basic-table-card">
           <div className="table-header">
             <div className="content-header-2">Recent Transactions</div>
             <div className="table-view-all">View all</div>
@@ -105,7 +101,7 @@ export default function Overview(props) {
                                     <th className="app-table-header">Trans.Date</th>
                                   </tr>
                                   </thead>
-                                  {/* <tbody>
+                                  <tbody>
                                   {
                                       props.transData.map( result => {
                                         return(
@@ -127,11 +123,11 @@ export default function Overview(props) {
                                       })
                                     }
                                  
-                                  </tbody> */}
+                                  </tbody>
                                   
                                   
                                   </table>
-        </div>
+        </div> */}
 
     </>
     )

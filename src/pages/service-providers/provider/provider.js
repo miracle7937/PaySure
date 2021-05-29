@@ -7,7 +7,7 @@ import Overview from './overview'
 import Transactions from './transactions'
 import Charges from './charges'
 import Settlements from './settlements'
-import { getServiceProvider, getCharges,getServices,getTransactions } from '../../../globalApi'
+import { getServiceProvider, getCharges,getServices,getTransactionsProvider,getWalletBalance } from '../../../globalApi'
 
 export default function Provider() {
         
@@ -19,6 +19,11 @@ export default function Provider() {
     const [chargesData, setChargesData] = useState([])
     const [transData, setTransData] = useState([])
     const [services, setServices] = useState([]);
+    const[wallet, setWallet] = useState({})
+    const [newpage, setNewPage] = useState(0)
+    const [newrecord, setNewRecord] = useState(10)
+    let defaultPage = localStorage.getItem('tcP')
+    let defaultRecords = localStorage.getItem('tR')
     let {id} = useParams();
 
     useEffect( async () => {
@@ -28,15 +33,9 @@ export default function Provider() {
      setProvider(result); 
      getCharges(result.id).then(result => {setChargesData(result)} )} )
 
-        getTransactions().then(result => { 
-          let data = result.filter(trans => { 
-           return trans.providerName = provider.providerName
-          });
-          console.log('trans>>>', data);
-          console.log('transAll>>>', result);
-          console.log('prov>>>', provider);
-        setTransData(data)});
+     getTransactionsProvider().then(result => { setTransData(result)});
 
+        getWalletBalance(id).then(result => setWallet(result));  
       },[])
 
 
@@ -81,21 +80,21 @@ export default function Provider() {
             <div className="admin-top-bar">
         <div className="admin-top-bar-left">
          <Link style={{ textDecoration: 'none'}} to="/service-providers"><div className="settings-icon"></div></Link> 
-          <div onClick = { changeOverview } className="admin-top-barlinks admin-active-top-link">Overview</div>
-          <div onClick = { changeTransactions } className="admin-top-barlinks">Transactions</div>
-          <div onClick = { changeSettlement } className="admin-top-barlinks">Settlements</div>
-          <div onClick = { changeCharges } className="admin-top-barlinks">Charges</div>
+          <div onClick = { changeOverview } className={overview ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Overview</div>
+          <div onClick = { changeTransactions } className={transactions ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Transactions</div>
+          <div onClick = { changeSettlement } className={settlement ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Settlements</div>
+          <div onClick = { changeCharges } className={charges ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Charges</div>
         </div>
         <div className="admin-top-bar-right">
           <div className="admin-topbar-date">October 8th, 2020</div>
         </div>
       </div>
 
-      { overview ? <Overview provider= {provider} services={services}/> 
+      { overview ? <Overview wallet={wallet} provider= {provider} services={services}/> 
       : settlement ? <Settlements provider= {provider}/>
       : transactions ? <Transactions transData={transData} provider= {provider}/>
       : charges ? <Charges chargesData={chargesData} provider= {provider}/>
-      : <Overview provider= {provider} services={services}/> }
+      : <Overview wallet={wallet} provider= {provider} services={services}/> }
 
 
     </div>

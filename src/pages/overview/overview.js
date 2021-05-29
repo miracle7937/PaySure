@@ -2,10 +2,13 @@ import React, { useState, useEffect }  from 'react'
 import Leftbar from '../../components/leftbar/leftbar'
 import Rightbar from '../../components/rightbar/rightbar'
 import '../global.css'
-import { Link, Redirect } from 'react-router-dom'
-import { currentUser, getOrganisations, getUsers, getServiceProviders, getServices, getTransactions } from '../../globalApi'
+import { Link, Redirect, useHistory } from 'react-router-dom'
+import { currentUser, getOrganisations, getUsers, getServiceProviders, getServices, getTransactions,getPaysureBalance } from '../../globalApi'
 import { Line, Doughnut } from 'react-chartjs-2';
-
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+import NumberFormat from 'react-number-format';
 
 export default function Overview(props) {
 
@@ -16,16 +19,21 @@ export default function Overview(props) {
   const [serviceP, setServiceP] = useState('')
   const [services, setServices] = useState('')
   const [trans, setTrans] = useState('')
+  const [paysureBalance, setPaysureBalance] = useState({})
+
+  const history = useHistory();
 
   useEffect( () => {
     const getUser = currentUser()
     setUser(getUser)
-    getOrganisations().then(result => setOrg(result.length))
-    getUsers().then(result => setUsers(result))
-    getUsers().then(result => setUsersLength(result.length))
-    getServiceProviders().then(result => setServiceP(result.length))
-    getServices().then(result => setServices(result.length))
-    getTransactions().then(result => setTrans(result.length))
+    getOrganisations(history).then(result => setOrg(result.length))
+    getUsers(history).then(result => setUsers(result))
+    getUsers(history).then(result => setUsersLength(result.length))
+    getServiceProviders(history).then(result => setServiceP(result.length))
+    getServices(history).then(result => setServices(result.length))
+    getTransactions(history).then(result => setTrans(result.length))
+    getPaysureBalance(history).then(result => setPaysureBalance(result))
+    
   }, [])
 
   const data = {
@@ -89,32 +97,32 @@ export default function Overview(props) {
       </div>
             <div className="content-header">Hii there! <span style={{textTransform: 'capitalize'}}>{user.username}</span></div>
               <div className="content-sub2"> Here are the latest report on Paysure Digital</div>
-              <div data-animation="slide" data-duration="500" data-infinite="1" className="content-slider w-slider">
-                <div className="mask w-slider-mask">
-                <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+              <br/><br/>
+              <OwlCarousel className='owl-theme' loop margin={10} nav>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
                           <div className="slide-card-header">Wallet</div>
-                          <div className="slide-card-value">N23,000,000</div>
+                          <NumberFormat value={paysureBalance.walletBalance} className="slide-card-value" displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
                         </div>
                         <div className="slide-card-icon green"></div>
                       </div>
                     </div>
-                  </div>
-                  <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+    </div>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
-                          <div className="slide-card-header">Users</div>
-                          <div className="slide-card-value">{ usersLength }</div>
+                          <div className="slide-card-header">Commission</div>
+                          <NumberFormat value={paysureBalance.commissionBalance} className="slide-card-value" displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
                         </div>
-                        <div className="slide-card-icon purple"></div>
+                        <div className="slide-card-icon green"></div>
                       </div>
                     </div>
-                  </div>
-                  <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+    </div>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
                           <div className="slide-card-header">Products</div>
@@ -123,9 +131,9 @@ export default function Overview(props) {
                         <div className="slide-card-icon orange"></div>
                       </div>
                     </div>
-                  </div>
-                  <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+    </div>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
                           <div className="slide-card-header">Organisation</div>
@@ -134,9 +142,9 @@ export default function Overview(props) {
                         <div className="slide-card-icon blue"></div>
                       </div>
                     </div>
-                  </div>
-                  <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+    </div>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
                           <div className="slide-card-header">Service Providers</div>
@@ -145,9 +153,9 @@ export default function Overview(props) {
                         <div className="slide-card-icon yellow"></div>
                       </div>
                     </div>
-                  </div>
-                  <div className="content-slide w-slide">
-                    <div className="content-slide-box">
+    </div>
+    <div className='item'>
+    <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
                           <div className="slide-card-header">Services</div>
@@ -156,16 +164,9 @@ export default function Overview(props) {
                         <div className="slide-card-icon red"></div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="content-slider-left-arrow w-slider-arrow-left">
-                  <div className="w-icon-slider-left"></div>
-                </div>
-                <div className="content-slider-right-arrow w-slider-arrow-right">
-                  <div className="w-icon-slider-right"></div>
-                </div>
-                <div className="slide-nav w-slider-nav w-slider-nav-invert w-round"></div>
-              </div>
+    </div>
+</OwlCarousel>
+<br/><br/>
               <div className="basic-table-card">
                 <div className="content-header-2">Business Revenue</div>
                 <div className="analytics-div">

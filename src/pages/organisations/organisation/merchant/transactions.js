@@ -4,17 +4,17 @@ export default function Transactions({trans}) {
 
     return (
     <>
-          <div class="content-header">Paysure Agency - Transactions</div>
-      <div class="content-sub">Here are the latest report on Paysure Agency</div>
-      <div class="app-table-actions">
-        <div class="app-table-search">
-        <input type="text" class="app-input-search w-input" maxlength="256" name="name" data-name="Name" placeholder="Search..." id="name" />
+          <div className="content-header">Paysure Agency - Transactions</div>
+      <div className="content-sub">Here are the latest report on Paysure Agency</div>
+      <div className="app-table-actions">
+        <div className="app-table-search">
+        <input type="text" className="app-input-search w-input" maxlength="256" name="name" data-name="Name" placeholder="Search..." id="name" />
           </div>
-        <div class="app-table-buttons">
-          {/* <a href="#" class="table-button sort">Sort <span class="table-button-icon"></span></a>
-          <a href="#" class="table-button filter">Filter <span class="table-button-icon"></span></a>
-          <a href="#" class="table-button actions">Actions <span class="table-button-icon"></span></a> */}
-          <div class="styled">
+        <div className="app-table-buttons">
+          {/* <a href="#" className="table-button sort">Sort <span className="table-button-icon"></span></a>
+          <a href="#" className="table-button filter">Filter <span className="table-button-icon"></span></a>
+          <a href="#" className="table-button actions">Actions <span className="table-button-icon"></span></a> */}
+          <div className="styled">
         <select>
                 <option selected>Sort</option>
                 <option>Apples</option>
@@ -23,7 +23,7 @@ export default function Transactions({trans}) {
             </select>
         </div>
 
-        <div class="styled">
+        <div className="styled">
         <select>
                 <option selected>Filter</option>
                 <option>Apples</option>
@@ -33,7 +33,7 @@ export default function Transactions({trans}) {
         </div>
 
 
-        <div class="styled">
+        <div className="styled">
         <select>
                 <option selected>Actions</option>
                 <option>Apples</option>

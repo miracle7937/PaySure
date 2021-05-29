@@ -14,7 +14,9 @@ import UserManagement from './pages/user-management/user'
 import CreateRole from './pages/user-management/Roles/createRoles'
 import EditRole from './pages/user-management/Roles/editRoles'
 import Settings from './pages/settings/settings'
+
 function App() {
+
   return (
     <BrowserRouter>
       <Switch>

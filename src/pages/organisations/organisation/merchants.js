@@ -25,7 +25,7 @@ export default function Merchants(props) {
          { 
             addMerch ? <MerForm roles = {props.roles} updateList={props.updateList} bands={props.bands} closeModal = {toggleaddMerch}/> : null
          }
-          <div class="content-header">Merchants</div>
+          <div className="content-header">Merchants</div>
       <div className="content-sub">Here are the list of merchants</div>
       <div className="app-table-actions">
                     <div className="app-table-search">

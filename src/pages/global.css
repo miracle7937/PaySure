@@ -164,3 +164,75 @@
    margin-bottom: 10px;
    padding-right: 20px;
   }
+
+  .pagination{
+    display: flex;
+  }
+  .pag-col-1{
+    flex:0 30%;
+    padding: 15px;
+  }
+  .pag-col-2{
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+  }
+  .pag-col-3{
+    flex:0 25%;
+    padding: 15px;
+  }
+  .pag-prev{
+  border: 1px solid #5322db;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: #5322db;
+  text-decoration: none;
+  font-size: 12px;
+  transition: all .2s;
+  }
+
+  .pag-prev:hover{
+    background: #5322db1d;
+  }
+   
+  .pag-next{
+    border: 1px solid #5322db;
+    background-color:#5322db;
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all .2s;
+  }
+
+  .pag-next:hover{
+    border: 1px solid #3a14a2;
+    background: #3a14a2;
+  }
+
+  .pag-s{
+    display: table-cell;
+    padding: 5px 5px;
+  }
+
+  .pag-input{
+    height: 30px;
+    width: 70px;
+    border-radius: 3px;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+
+  .pag-s-text{
+    font-size: 12px;
+    color: rgb(95, 95, 95);
+    font-weight: 600;
+  }

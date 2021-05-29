@@ -30,6 +30,10 @@ export default function Login(props) {
         setLoader(false)
       localStorage.setItem('user', JSON.stringify(user.data.data))
       localStorage.setItem('token', user.data.data.token)
+      localStorage.setItem('tcP', 1)
+      localStorage.setItem('tR', 10)
+      localStorage.setItem('prov-tcP', 1)
+      localStorage.setItem('prov-tR', 10)
       props.history.push('/overview')
       }
       else {

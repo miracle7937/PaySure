@@ -4,8 +4,8 @@ export default function Settlements() {
 
     return (
     <>
-          <div className="content-header">Paysure Agency - Settlements</div>
-      <div className="content-sub">Here are the latest report on Paysure Agency</div>
+          <div className="content-header">Settlements</div>
+      <div className="content-sub">Here are the latest report on this Provider</div>
       <div className="app-table-actions">
         <div className="app-table-search">
         <input type="text" className="app-input-search w-input" maxlength="256" name="name" data-name="Name" placeholder="Search..." id="name" />
