@@ -26,14 +26,13 @@ export default function Overview(props) {
   useEffect( () => {
     const getUser = currentUser()
     setUser(getUser)
+    getPaysureBalance(history).then(result => {console.log(result);setPaysureBalance(result)})
     getOrganisations(history).then(result => setOrg(result.length))
     getUsers(history).then(result => setUsers(result))
     getUsers(history).then(result => setUsersLength(result.length))
     getServiceProviders(history).then(result => setServiceP(result.length))
-    getServices(history).then(result => setServices(result.length))
-    getTransactions(history).then(result => setTrans(result.length))
-    getPaysureBalance(history).then(result => setPaysureBalance(result))
-    
+    getServices(history).then(result => setServices(result.totalRecords))
+    getTransactions(history).then(result => setTrans(result.length))    
   }, [])
 
   const data = {
@@ -128,7 +127,7 @@ export default function Overview(props) {
                           <div className="slide-card-header">Products</div>
                           <div className="slide-card-value">5</div>
                         </div>
-                        <div className="slide-card-icon orange"></div>
+                        <div className="slide-card-icon orange"></div>
                       </div>
                     </div>
     </div>
@@ -139,7 +138,7 @@ export default function Overview(props) {
                           <div className="slide-card-header">Organisation</div>
                           <div className="slide-card-value">{ organisations }</div>
                         </div>
-                        <div className="slide-card-icon blue"></div>
+                        <div className="slide-card-icon blue"></div>
                       </div>
                     </div>
     </div>
@@ -150,7 +149,7 @@ export default function Overview(props) {
                           <div className="slide-card-header">Service Providers</div>
                           <div className="slide-card-value">{ serviceP }</div>
                         </div>
-                        <div className="slide-card-icon yellow"></div>
+                        <div className="slide-card-icon yellow"></div>
                       </div>
                     </div>
     </div>
@@ -161,7 +160,7 @@ export default function Overview(props) {
                           <div className="slide-card-header">Services</div>
                           <div className="slide-card-value">{services}</div>
                         </div>
-                        <div className="slide-card-icon red"></div>
+                        <div className="slide-card-icon red"></div>
                       </div>
                     </div>
     </div>

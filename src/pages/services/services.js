@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react'
-import { getServices, getServiceProviders, getServiceCategory,getCategory } from '../../globalApi'
+import { getServices,getServicesAll, getServiceProviders, getServiceCategory,getCategory } from '../../globalApi'
 import axios from 'axios'
 import url from '../../baseUrl.json'
 import Loader from '../../components/ui/loader/loader'
@@ -8,17 +8,110 @@ import EmptyData from '../../components/ui/emptyData/emptyData'
 
 export default function Services(props) {
     const [services, setServices] = useState([]);
+    const [serDetails, setSerDetails] = useState({});
     const [providers, setProviders] = useState([]);
     const [category, setCategory] = useState([]);
     const [loader, setLoader] = useState(false);
     const [formState, setFormState] = useState(false)
     const [formStateType, setFormStateType] = useState('success')
+    const [newpage, setNewPage] = useState(0)
+    const [newrecord, setNewRecord] = useState(10)
+
+    let defaultPage = localStorage.getItem('ser-tcP')
+    let defaultRecords = localStorage.getItem('ser-tR')
+   
+   
 
     useEffect( () => {
-        getServices().then(result => setServices(result));
+      setNewPage(defaultPage)
+      setNewRecord(defaultRecords)
+      getServicesAll(defaultPage,defaultRecords).then(async(result) => {
+         setSerDetails(result); 
+         setServices(result.data);
+      });
+     
         getServiceProviders().then(result => setProviders(result));
         getCategory().then(result => setCategory(result));
       }, [])
+
+
+      const prevPage = () => {
+        let currentPage = localStorage.getItem('ser-tcP');
+        let defaultRecords = localStorage.getItem('ser-tR')
+
+          let page = parseInt(currentPage) - 1;    
+           console.log(currentPage)
+          if(page > 0){
+            setLoader(true)
+          getServicesAll(page,defaultRecords).then(async(result) => { 
+            setSerDetails(result); 
+        
+           setServices(result.data);
+           setNewPage(page)
+            setLoader(false)});
+          }
+          else{
+            return false
+          }
+      }
+      
+      const nextPage = () => {
+      let currentPage = localStorage.getItem('ser-tcP');
+      let defaultRecords = localStorage.getItem('ser-tR')
+        let page = parseInt(currentPage) + 1
+        if(serDetails.lastPage >= page){
+          setLoader(true)
+           getServicesAll(page,defaultRecords).then(async(result) => {
+            setSerDetails(result); 
+           
+            setServices(result.data);
+            setNewPage(page)
+              setLoader(false)});
+        }
+        else{
+          return false
+        }
+      }
+    
+      const goToPage = (e) =>{
+        let currentPage = localStorage.getItem('ser-tcP');
+        if (e.key === 'Enter') {
+        let defaultRecords = localStorage.getItem('ser-tR')
+          if(serDetails.lastPage >= newpage){
+            setLoader(true)
+             getServicesAll(newpage,defaultRecords).then(async(result) => {
+              setSerDetails(result); 
+           setServices(result.data);
+           setNewPage(newpage)
+              setLoader(false)});
+          }
+          else{
+            return false
+          }
+        }
+        else{
+          return false
+        }
+      }
+    
+      const modifyRecords = (e) =>{
+        if (e.key === 'Enter') {
+        if(serDetails.lastPage >= newpage){
+          setLoader(true)
+        getServicesAll(newpage,newrecord).then(async(result) => {
+           setNewRecord(newrecord)
+          setSerDetails(result); 
+          setServices(result.data);
+          setLoader(false)});
+        }
+        else{
+          return false
+        }
+      }
+      else{
+        return false
+      }
+      }
      
     const setDefault = async (providerCode, serviceCode) => {
       setLoader(true)
@@ -65,11 +158,19 @@ export default function Services(props) {
           
     }
 
-    const getServiceCategoryFuc = (result) => {
-      if( result == "All") {
-        return getServices().then(result => setServices(result));
-      }
-      getServiceCategory(result).then(result => setServices(result));
+    const getServiceCategoryFuc = async(result) => {
+      let currentPage = localStorage.getItem('ser-tcP');
+      let defaultRecords = localStorage.getItem('ser-tR')
+      setLoader(true)
+      if( result == "1") {
+        return getServicesAll(defaultPage,defaultRecords).then(async(result) => {
+          setSerDetails(result); 
+          setServices(result.data);
+          setLoader(false)
+      })
+    }
+      await getServiceCategory(currentPage,defaultRecords,result).then(result =>  {setSerDetails(result); setServices(result.data);});
+      setLoader(false)
     }
     
         return(
@@ -87,7 +188,7 @@ export default function Services(props) {
           <div className="styled">
           <select  onChange={ (e) => getServiceCategoryFuc(e.target.value)}  className="app-select w-select">
                                       <option selected disabled>Filter by Category</option>
-                                      <option value="All">All</option>
+                                      <option value='1'>All</option>
                                       {
                                           category.map(result => {
                                               return <option key={result.id} value={ result.categoryName }>{result.categoryName}</option>
@@ -141,7 +242,23 @@ export default function Services(props) {
                                                                   
                                   </tbody>
                                   </table>
+                                  
 }
+             <div className="pagination">
+       <div className="pag-col-1">
+         <div className="pag-s"><input onKeyDown={modifyRecords} value={newrecord}  onChange = { (event) => setNewRecord(event.target.value) } className="pag-input" type="number" name="page" max="13" /></div>
+         <div className="pag-s"><span style={{marginRight:'10px'}} className="pag-s-text">of {serDetails.totalRecords}</span></div>
+       </div>
+       <div className="pag-col-2">
+        <div className="pag-prev" onClick={ prevPage }>Previous Page</div>
+        <div className="pag-next" onClick={ nextPage }>Next Page</div>
+       </div>
+       <div className="pag-col-3">
+         <div className="pag-s"><span className="pag-s-text">Page</span></div>
+         <div className="pag-s"><input onKeyDown={goToPage} value={newpage}  onChange = { (event) => setNewPage(event.target.value) } className="pag-input" type="number" name="page" max="13" /></div>
+         <div className="pag-s"><span style={{marginRight:'10px'}} className="pag-s-text">of</span><span className="pag-s-text">{serDetails.lastPage}</span></div>
+       </div>
+      </div>
 
 </>
     )

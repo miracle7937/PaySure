@@ -34,6 +34,8 @@ export default function Login(props) {
       localStorage.setItem('tR', 10)
       localStorage.setItem('prov-tcP', 1)
       localStorage.setItem('prov-tR', 10)
+      localStorage.setItem('ser-tcP', 1)
+      localStorage.setItem('ser-tR', 10)
       props.history.push('/overview')
       }
       else {
@@ -47,7 +49,7 @@ export default function Login(props) {
 
     const handleKeypress = e => {
       //it triggers by pressing the enter key
-    if (e.keyCode === 13) {
+      if (e.key === 'Enter') {
       Login();
     }
   };
@@ -76,7 +78,7 @@ export default function Login(props) {
         </div>
           <div className="app-login-form-group">
               <label className="login-label">Password</label>
-              <input onKeyPress={handleKeypress} onChange = { (event) => setPassword(event.target.value)} type="password" className="app-login-text-field w-input"  name="password" data-name="password" placeholder="xxxxxxxxxxxxx" required />
+              <input  onKeyDown={handleKeypress} onChange = { (event) => setPassword(event.target.value)} type="password" className="app-login-text-field w-input"  name="password" data-name="password" placeholder="xxxxxxxxxxxxx" required />
               </div>
       </div>
       <div className="app-login-button" onClick={Login}>Login into Account</div>

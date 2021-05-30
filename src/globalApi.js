@@ -151,19 +151,40 @@ catch(e){console.log(e)}
 export async function getServices(history) {
     const local_token = localStorage.getItem('token');
   try {
-    const result = await axiosInstance(history).get(process.env.REACT_APP_BACKEND_URL + '/services' , {
+    const result = await axiosInstance(history).get(process.env.REACT_APP_BACKEND_URL + '/services?orderBy=serviceName&pageNumber=1&recordsPerPage=10' , {
       headers: {
         'Authorization': `Bearer ${local_token}` 
       }
     })
   if(result.data.responseCode === 0) {
-    return result.data.data
+    return result.data
   }
   else {
     console.log(result.data.responseMessage)
   }
  }
  catch(e){console.log(e)}
+
+}
+
+export async function getServicesAll(page,records) {
+  const local_token = localStorage.getItem('token');
+try {
+  const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + `/services?orderBy=serviceName&pageNumber=${page}&recordsPerPage=${records}` , {
+    headers: {
+      'Authorization': `Bearer ${local_token}` 
+    }
+  })
+if(result.data.responseCode === 0) {
+  localStorage.setItem('ser-tcP', page)
+  localStorage.setItem('ser-tR', records)
+  return result.data
+}
+else {
+  console.log(result.data.responseMessage)
+}
+}
+catch(e){console.log(e)}
 
 }
 
@@ -430,16 +451,19 @@ export async function getCategory() {
     
 }
 
-export async function getServiceCategory(categoryName) {
+export async function getServiceCategory(page,records,categoryName) {
   const local_token = localStorage.getItem('token');
   try {
-      const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL +  '/services/category/' + categoryName + '?orderBy=serviceName&pageNumber=1&recordsPerPage=10', {
+      const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL +  '/services/category/' + categoryName + `?orderBy=serviceName&pageNumber=${page}&recordsPerPage=${records}`, {
         headers: {
           'Authorization': `Bearer ${local_token}` 
         }
       })
+
     if(result.data.responseCode === 0) {
-      return result.data.data
+      localStorage.setItem('ser-tcP', page)
+localStorage.setItem('ser-tR', records)
+      return result.data
     }
     else {
       console.log(result.data.responseMessage)
@@ -448,6 +472,7 @@ export async function getServiceCategory(categoryName) {
    catch(e){console.log(e)}
     
 }
+
 
 export async function getTerminal() {
   const local_token = localStorage.getItem('token');

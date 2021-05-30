@@ -2,7 +2,7 @@ import React, { useState }  from 'react'
 import Loader from '../components/ui/loader/loader'
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-export default function ViewTrans({transactions,closeModal}) {
+export default function ViewTrans({alltransactions,closeModal}) {
     const [ startDate, setStartDate] = useState()
     const [ endDate, setEndDate] = useState()
     const [loader, setLoader] = useState(false);
@@ -14,7 +14,7 @@ export default function ViewTrans({transactions,closeModal}) {
    console.log("start", new Date(startDate))
    console.log("end", new Date(endDate))
    
-   const newTrans = await transactions.filter(item => {
+   const newTrans = await alltransactions.filter(item => {
        const transDate = new Date(item.transactionDate).toISOString().substr(0,10);
        return transDate >= startDate && transDate <= endDate;
    })

@@ -10,13 +10,13 @@ export default function ViewTrans({trans, closeModal}) {
       </div>
       <div className="details-flex">
           <div className="details-div">
-            <div className="details-header">Transaction ID</div>
+            <div className="details-header">Transaction Ref</div>
             <div className="details-value">{trans.transactionId}</div>
           </div>
         </div>
         <div className="details-flex">
           <div className="details-div">
-            <div className="details-header">Session ID</div>
+            <div className="details-header">Session Ref</div>
             <div className="details-value">{ trans.sessionId}</div>
           </div>
           <div className="details-div">
@@ -36,12 +36,13 @@ export default function ViewTrans({trans, closeModal}) {
             <div className="details-value">{trans.serviceName}</div>
           </div>
           <div className="details-div">
-            <div className="details-header">Merchant Name</div>
+            <div className="details-header">Agent Name</div>
             <div className="details-value">{trans.merchantName}</div>
           </div>
           <div className="details-div">
             <div className="details-header">Amount</div>
-            <div className="details-value"><NumberFormat value={trans.amount} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
+            <div className="details-value">
+              <NumberFormat value={trans.amount} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
 </div>
           </div>
           <div className="details-div">
@@ -49,11 +50,11 @@ export default function ViewTrans({trans, closeModal}) {
             <div className="details-value"><NumberFormat value={trans.actualAmount} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} /></div>
           </div>
           <div className="details-div">
-            <div className="details-header">Paysure Commissson</div>
+            <div className="details-header">Paysure Share</div>
             <div className="details-value"> <NumberFormat value={trans.paysureCoreCommission} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} /></div>
           </div>
           <div className="details-div">
-            <div className="details-header">Merchant Commission</div>
+            <div className="details-header">Agent Share</div>
             <div className="details-value"><NumberFormat value={trans.merchantCommission} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} />
 </div>
           </div>
@@ -62,7 +63,7 @@ export default function ViewTrans({trans, closeModal}) {
             <div className="details-value">{trans.transactionDate}</div>
           </div>
           <div className="details-div">
-            <div className="details-header">Status</div>
+            <div className="details-header">Transaction Status</div>
             <div className="details-value">{trans.transactionStatus}</div>
           </div>
           <div className="details-div">
@@ -70,7 +71,7 @@ export default function ViewTrans({trans, closeModal}) {
             <div className="details-value">{trans.transactionStatusMessage}</div>
           </div>
           <div className="details-div">
-            <div className="details-header">Prov. Status Message</div>
+            <div className="details-header">Provider Status Message</div>
             <div className="details-value">{trans.providerStatusMessage}</div>
           </div>
           <div className="details-div">
@@ -78,7 +79,7 @@ export default function ViewTrans({trans, closeModal}) {
             <div className="details-value">{trans.providerReference}</div>
           </div>
           <div className="details-div">
-            <div className="details-header">Date</div>
+            <div className="details-header">Transaction Date</div>
             <div className="details-value">{trans.transactionDate}</div>
           </div>
         </div>

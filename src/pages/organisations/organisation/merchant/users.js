@@ -11,30 +11,7 @@ export default function Users({admin}) {
         <input type="text" className="app-input-search w-input"  placeholder="Search..." id="name" />
           </div>
         <div className="app-table-buttons">
-          {/* <a href="#" className="table-button sort">Sort <span className="table-button-icon"></span></a>
-          <a href="#" className="table-button filter">Filter <span className="table-button-icon"></span></a>
-          <a href="#" className="table-button actions">Actions <span className="table-button-icon"></span></a> */}
-          <div className="styled">
-          <select className="app-modal-select-field w-select">
-            <option value="">Sort</option>
-            <option value="Transfer">Transfer Api</option>
-          </select>
-        </div>
 
-        <div className="styled">
-        <select className="app-modal-select-field w-select">
-            <option value="">Filter  </option>
-            <option value="Transfer">Transfer Api</option>
-          </select>
-        </div>
-
-
-        <div className="styled">
-        <select className="app-modal-select-field w-select">
-            <option value="">Actions</option>
-            <option value="Transfer">Transfer Api</option>
-          </select>
-        </div>
 
         </div>
       </div>

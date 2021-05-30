@@ -81,7 +81,7 @@ export default function Provider() {
         <div className="admin-top-bar-left">
          <Link style={{ textDecoration: 'none'}} to="/service-providers"><div className="settings-icon"></div></Link> 
           <div onClick = { changeOverview } className={overview ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Overview</div>
-          <div onClick = { changeTransactions } className={transactions ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Transactions</div>
+          {/* <div onClick = { changeTransactions } className={transactions ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Transactions</div> */}
           <div onClick = { changeSettlement } className={settlement ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Settlements</div>
           <div onClick = { changeCharges } className={charges ? 'admin-top-barlinks admin-active-top-link' : 'admin-top-barlinks'}>Charges</div>
         </div>

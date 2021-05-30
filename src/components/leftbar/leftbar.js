@@ -39,7 +39,7 @@ export default function Login(props) {
       </NavLink> 
       <NavLink activeClassName= "active-link" to="/transactions"> 
  <div className="admin-col-link-div">
-        <div className="admin-col-1-links"></div>
+        <div className="admin-col-1-links"></div>
         <div className="admin-col-link-text">Transactions</div>
       </div>
       </NavLink> 

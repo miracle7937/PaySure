@@ -5,6 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { getServiceProviders, getServices } from '../../globalApi'
 import AddProvider from './addProvider'
 import EmptyData from '../../components/ui/emptyData/emptyData'
+import NumberFormat from 'react-number-format';
 
 function ServiceProviders() {
   const [providers, setProviders] = useState([]);
@@ -104,8 +105,10 @@ function ServiceProviders() {
                                   <td className="app-table2-data">{result.providerCode}</td>
                                       <td className="app-table2-data">{result.providerName}</td>
                                       <td className="app-table2-data">{result.walletId}</td>
-                                      <td className="app-table2-data">{result.balance}</td>
-                                      <td className="app-table2-data">{result.totalFunded}</td>
+                                      <td className="app-table2-data"> 
+                                      <NumberFormat value={result.balance} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} /></td>
+                                      <td className="app-table2-data">
+                                      <NumberFormat value={result.totalFunded} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={(value, props) => <div {...props}>{value}</div>} /></td>
                                       <td className="app-table2-data">{result.createdAt}</td>
                                     <Link to={"/service-provider/" + result.providerCode} style={{ textDecoration: 'none'}}>
                                     <td className="app-table2-data" style={{color: '#131573', fontWeight: 'bold', cursor: 'pointer'}}>

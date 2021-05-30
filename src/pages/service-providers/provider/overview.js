@@ -47,7 +47,7 @@ export default function Overview(props) {
                       </div>
                     </div>
     </div>
-    {/* <div className='item'>
+    <div className='item'>
     <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
@@ -57,7 +57,7 @@ export default function Overview(props) {
                         <div className="slide-card-icon green"></div>
                       </div>
                     </div>
-    </div> */}
+    </div>
     <div className='item'>
     <div className="content-slide-box">
                       <div className="content-info-card">
@@ -69,7 +69,7 @@ export default function Overview(props) {
                       </div>
                     </div>
     </div>
-    <div className='item'>
+    {/* <div className='item'>
     <div className="content-slide-box">
                       <div className="content-info-card">
                         <div className="div-block-2">
@@ -79,7 +79,7 @@ export default function Overview(props) {
                         <div className="slide-card-icon blue"></div>
                       </div>
                     </div>
-    </div>
+    </div> */}
 </OwlCarousel>
 <br/><br/>
 {/* <div className="basic-table-card">
