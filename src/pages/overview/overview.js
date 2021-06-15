@@ -180,11 +180,11 @@ export default function Overview(props) {
                 <div className="details-flex">
           <div className="details-div-x">
           <div className="details-header">Total Transaction</div>
-          <div className="details-value">N12,000,000</div>
+          <div className="details-value">N30,000,000</div>
           </div>
           <div className="details-div-x">
             <div className="details-header">Total Settlements</div>
-            <div className="details-value">N20,000,000</div>
+            <div className="details-value">N40,000,000</div>
           </div>
           <div className="details-div-x">
             <div className="details-header">Income</div>
