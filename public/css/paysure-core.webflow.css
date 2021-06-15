@@ -1171,6 +1171,14 @@ body {
   flex: 0 25%;
 }
 
+.details-div-x {
+  margin-bottom: 57px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 33.3%;
+  -ms-flex: 0 33.3%;
+  flex: 0 33.3%;
+}
+
 .details-header {
   margin-bottom: 4px;
   font-size: 12px;

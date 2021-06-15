@@ -5,34 +5,26 @@ import Overview from './overview'
 import Users from './users'
 import Transactions from './transactions'
 import { Redirect, useParams } from 'react-router-dom'
-import { getMerchants, getUsers2, getMerTransaction } from '../../../../globalApi'
+import {getUsers2, getMerTransaction,getMerchant,getWalletBalance } from '../../../../globalApi'
 export default function Product() {
         
     const [ backRoute, setBackRoute] = useState(false);
     const [ overview, setOverview] = useState(true);
     const [ users, setUsers] = useState(false);
     const [ transactions, setTransactions] = useState(false);
-    const [merchants, setMerchants] = useState([])
+    const [merchant, setMerchant] = useState({})
     const [admin, setAdmin] = useState([]);
     const [trans, setTrans] = useState([]);
+    const[wallet, setWallet] = useState({})
+    const[transDetails, setTransDetails] = useState({})
     let { id } = useParams();
     const orgCode = localStorage.getItem('orgCode');
    
   useEffect( () => {
-
-    const findMerch = async () => {
-       await merchants.find( code => {
-        return code.merchantCode == id;
-      })
-    }
-    const final = findMerch().then(result => {return result})
-    getMerchants(orgCode).then(result => { setMerchants(result); console.log('merch>>>>>>>>>>>>>>>>>>', result) }).then(    
-    console.log('merch>>>>>>>>>333333>>>>>>>>>',merchants)
-    )
-    console.log(id)
-
+    getWalletBalance(id).then(result => setWallet(result)); 
+    getMerchant(id).then(result => { setMerchant(result)})
     getUsers2(id).then(result => { setAdmin(result)})
-    getMerTransaction(id).then(result => { setTrans(result)})
+    getMerTransaction(id).then(result => {setTransDetails(result); setTrans(result.data)})
   }, [])
 
 
@@ -87,10 +79,10 @@ export default function Product() {
         </div>
       </div>
 
-      { overview ? <Overview /> 
+      { overview ? <Overview transDetails={transDetails} wallet = {wallet} merchant = {merchant} /> 
       : users ? <Users admin = { admin } />
       : transactions ? <Transactions trans = {trans} />
-      : <Overview /> }
+      : <Overview transDetails={transDetails}  wallet = {wallet} merchant = {merchant} /> }
 
     </div>
       <div className="app-admin-col-3">

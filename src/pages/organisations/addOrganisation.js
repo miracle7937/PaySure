@@ -15,27 +15,19 @@ export default function AddBrand(props) {
         contactAddress: "",
         contactEmailAddress: "",
         logoUrl: "",
-        settlementBankName: "",
-        settlementAccountName: "",
-        settlementAccountNumber: "",
-        settlementAccountType: "",
-        settlementBvn: "",
-        parentOrganisationCode: url.org_code
+        parentOrganisationCode: url.org_code.toString()
     }  
 
     const merForm = {
         username: "",
         password: "",
+        transactionPin:"",
         merchantName: "",
         contactPersonName: "",
         phoneNumber: "",
         emailAddress: "",
         logoUrl: "",
-        accountNumber: "",
-        accountName: "",
-        bankName: "",
         bvn: "",
-        accountType: "",
         addressLine1: "",
         addressLine2: "",
         state: "",
@@ -178,21 +170,6 @@ export default function AddBrand(props) {
           <div className="form-flex-col"> 
           <input value={orgData.logoUrl}  onChange={ (e) => { setorgData({ ...orgData, logoUrl: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Logo Url"  required/>
           </div>
-          <div className="form-flex-col">
-          <input value={orgData.settlementBankName} onChange={ (e) => { setorgData({ ...orgData, settlementBankName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Bank Name"  required/>
-          </div>
-          <div className="form-flex-col">
-          <input value={orgData.settlementAccountName} onChange={ (e) => { setorgData({ ...orgData, settlementAccountName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Name"  required/>
-          </div>
-          <div className="form-flex-col">
-          <input value={orgData.settlementAccountNumber} onChange={ (e) => { setorgData({ ...orgData, settlementAccountNumber: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Number"  required/>
-          </div>
-          <div className="form-flex-col">
-          <input value={orgData.settlementAccountType} onChange={ (e) => { setorgData({ ...orgData, settlementAccountType: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Type"  required/>
-          </div>
-          <div className="form-flex-col">
-          <input value={orgData.settlementAccountType} onChange={ (e) => { setorgData({ ...orgData, settlementBvn: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="BVN"  required/>
-          </div>
  </div>
  <button type="submit" style={{cursor:'pointer'}} className="app-modal-button">Create Organisation</button>
   </form>
@@ -216,6 +193,9 @@ export default function AddBrand(props) {
         <input onChange={ (e) => { setmerData({ ...merData, password: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Password"  required/>
         </div>
         <div className="form-flex-col">
+        <input onChange={ (e) => { setmerData({ ...merData, transactionPin: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Transaction Pin"  required/>
+        </div>
+        <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, merchantName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Merchant Name"  required/>
         </div>
         <div className="form-flex-col">
@@ -231,19 +211,7 @@ export default function AddBrand(props) {
         <input onChange={ (e) => { setmerData({ ...merData, logoUrl: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Logo Url"  required/>
         </div>
         <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountNumber: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Number"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Name"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, bankName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Bank Name"  required/>
-        </div>
-        <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, bvn: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="BVN"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountType: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Type"  required/>
         </div>
         <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, addressLine1: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Address 1"  required/>
@@ -271,7 +239,7 @@ export default function AddBrand(props) {
         
             </select>
         </div>
-        {/* <div className="form-flex-col">
+        <div className="form-flex-col">
         <select required style={{ marginBottom: '30px'}} onChange={ (e) => setmerData({ ...merData, roleName: e.target.value  })}  className="app-select w-select">
               <option selected disabled>Select a Role</option>
               {
@@ -281,7 +249,7 @@ export default function AddBrand(props) {
               }
         
             </select>
-        </div> */}
+        </div>
         <div className="form-flex-col">
         <input value = { ip } onChange={ (e) => { setIp(e.target.value)}} type="text" className="app-modal-form-field w-input"  placeholder="IP Address" />
         <div style={{marginRight:"20px",marginTop:"-59px",display:"inline-block", float:'right', cursor: 'pointer', textDecoration: 'underline', color:'#c00'}} onClick={addtoArray}>Add IP</div>

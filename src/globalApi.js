@@ -25,10 +25,15 @@ export async function getWalletBalance(walletId) {
       return result.data.data
     }
     else {
-      console.log('result>>>>>',result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = {}
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = {}
+    return empty}
     
 }
 
@@ -44,10 +49,15 @@ export async function getPaysureBalance(history) {
       return result.data.data
     }
     else {
-      console.log('result>>>>>',result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = {}
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = {}
+    return empty}
     
 }
 
@@ -64,10 +74,15 @@ export async function getOrganisations(history) {
         return result.data.data
       }
       else {
-        console.log('result>>>>>',result.data.responseMessage)
+        console.log("Error",result.data.responseMessage)
+        const empty = []
+        return empty
       }
      }
-     catch(e){console.log(e)}
+     catch(e){
+       console.log(e); 
+       const empty = []
+      return empty}
       
 }
 
@@ -83,10 +98,15 @@ export async function getOrganisation(orgCode) {
         return result.data.data
       }
       else {
-        console.log(result.data.responseMessage)
+        console.log("Error",result.data.responseMessage)
+        const empty = {}
+        return empty
       }
      }
-     catch(e){console.log(e)}
+     catch(e){
+       console.log(e); 
+       const empty = {}
+      return empty}
       
 }
 
@@ -102,10 +122,15 @@ export async function getServiceProviders(history) {
     return result.data.data
   }
   else {
-    console.log(result.data.responseMessage)
+    console.log("Error",result.data.responseMessage)
+    const empty = []
+    return empty
   }
  }
- catch(e){console.log(e)}
+ catch(e){
+   console.log(e); 
+   const empty = []
+  return empty}
 
 }
 
@@ -121,10 +146,15 @@ if(result.data.responseCode === 0) {
   return result.data.data
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = {}
+  return empty
 }
 }
-catch(e){console.log(e)}
+catch(e){
+ console.log(e); 
+ const empty = {}
+return empty}
 
 }
 
@@ -141,10 +171,15 @@ if(result.data.responseCode === 0) {
   return result.data.data
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
 }
 }
-catch(e){console.log(e)}
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
 
 }
 
@@ -160,10 +195,15 @@ export async function getServices(history) {
     return result.data
   }
   else {
-    console.log(result.data.responseMessage)
+    console.log("Error",result.data.responseMessage)
+    const empty = []
+    return empty
   }
  }
- catch(e){console.log(e)}
+ catch(e){
+   console.log(e); 
+   const empty = []
+  return empty}
 
 }
 
@@ -181,10 +221,15 @@ if(result.data.responseCode === 0) {
   return result.data
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
 }
 }
-catch(e){console.log(e)}
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
 
 }
 
@@ -200,10 +245,15 @@ export async function getTransactions(history) {
     return result.data.data
   }
   else {
-    console.log(result.data.responseMessage)
+    console.log("Error",result.data.responseMessage)
+    const empty = []
+    return empty
   }
  }
- catch(e){console.log(e)}
+ catch(e){
+   console.log(e); 
+   const empty = []
+  return empty}
 
 }
 
@@ -221,10 +271,15 @@ if(result.data.responseCode === 0) {
   return result.data
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
 }
 }
-catch(e){console.log(e)}
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
 
 }
 
@@ -247,11 +302,15 @@ if(result.data.responseCode === 0) {
   return provData
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
 }
 }
-catch(e){console.log(e)}
-
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
 }
 
 export async function getUsers(history) {
@@ -266,10 +325,15 @@ export async function getUsers(history) {
         return result.data.data
       }
       else {
-        console.log(result.data.responseMessage)
+        console.log("Error",result.data.responseMessage)
+        const empty = []
+        return empty
       }
      }
-     catch(e){console.log(e)}
+     catch(e){
+       console.log(e); 
+       const empty = []
+      return empty}
 
 }
 
@@ -285,15 +349,20 @@ if(result.data.responseCode === 0) {
   return result.data.data
 }
 else {
-  console.log(result.data.responseMessage)
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
 }
 }
-catch(e){console.log(e)}
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
 
 }
 
 
-export async function getMerchants(orgCode) {
+export async function getMerchantsB2B(orgCode) {
   const local_token = localStorage.getItem('token');
   try {
       const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + '/organisations/merchants/' + orgCode + '/3', {
@@ -305,10 +374,64 @@ export async function getMerchants(orgCode) {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
+    
+}
+
+export async function getMerchantsB2BCustom(orgCode) {
+  const local_token = localStorage.getItem('token');
+  try {
+      const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + '/organisations/merchants/' + orgCode + '/8', {
+        headers: {
+          'Authorization': `Bearer ${local_token}` 
+        }
+      })
+    if(result.data.responseCode === 0) {
+      return result.data.data
+    }
+    else {
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
+    }
+   }
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
+    
+}
+
+
+export async function getMerchant(merchantCode) {
+  const local_token = localStorage.getItem('token');
+  try {
+      const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + '/merchants/single/' + merchantCode + '/details', {
+        headers: {
+          'Authorization': `Bearer ${local_token}` 
+        }
+      })
+    if(result.data.responseCode === 0) {
+      return result.data.data
+    }
+    else {
+      console.log("Error",result.data.responseMessage)
+      const empty = {}
+      return empty
+    }
+   }
+   catch(e){
+     console.log(e); 
+     const empty = {}
+    return empty}
     
 }
 
@@ -325,10 +448,15 @@ export async function getRoles() {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -345,10 +473,15 @@ export async function getRole(roleName) {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = {}
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = {}
+    return empty}
     
 }
 
@@ -364,10 +497,15 @@ export async function getPermissions() {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -383,10 +521,39 @@ export async function getPermission(roleName) {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
+    
+}
+
+export async function getPermissionByUser(user) {
+  const local_token = localStorage.getItem('token');
+  try {
+      const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + '/users/' + user + '/permissions', {
+        headers: {
+          'Authorization': `Bearer ${local_token}` 
+        }
+      })
+    if(result.data.responseCode === 0) {
+      return result.data.data
+    }
+    else {
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
+    }
+   }
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -403,10 +570,15 @@ export async function getBands() {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -420,15 +592,48 @@ export async function getMerTransaction(merCode) {
         }
       })
     if(result.data.responseCode === 0) {
-      return result.data.data
+      return result.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
+
+export async function getMerchTransactionsAll(page,records,merCode) {
+  const local_token = localStorage.getItem('token');
+try {
+  const result = await axiosInstance().get(process.env.REACT_APP_BACKEND_URL + `/transactions/merchant/${merCode}?orderBy=serviceName&pageNumber=${page}&recordsPerPage=${records}` , {
+    headers: {
+      'Authorization': `Bearer ${local_token}` 
+    }
+  })
+if(result.data.responseCode === 0) {
+  localStorage.setItem('mer-tcP', page)
+  localStorage.setItem('mer-tR', records)
+  return result.data
+}
+else {
+  console.log("Error",result.data.responseMessage)
+  const empty = []
+  return empty
+}
+}
+catch(e){
+ console.log(e); 
+ const empty = []
+return empty}
+
+}
+
+
 
 
 
@@ -444,10 +649,15 @@ export async function getCategory() {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -466,10 +676,15 @@ localStorage.setItem('ser-tR', records)
       return result.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }
 
@@ -486,9 +701,14 @@ export async function getTerminal() {
       return result.data.data
     }
     else {
-      console.log(result.data.responseMessage)
+      console.log("Error",result.data.responseMessage)
+      const empty = []
+      return empty
     }
    }
-   catch(e){console.log(e)}
+   catch(e){
+     console.log(e); 
+     const empty = []
+    return empty}
     
 }

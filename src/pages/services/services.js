@@ -187,7 +187,7 @@ export default function Services(props) {
           <div className="app-table-buttons">
           <div className="styled">
           <select  onChange={ (e) => getServiceCategoryFuc(e.target.value)}  className="app-select w-select">
-                                      <option selected disabled>Filter by Category</option>
+                                      <option defaultValue disabled>Filter by Category</option>
                                       <option value='1'>All</option>
                                       {
                                           category.map(result => {
@@ -225,7 +225,7 @@ export default function Services(props) {
                                       <td className="app-table2-data">{result.defaultProviderName}</td>
                                       <td className="app-table2-data">
                                     <select style={{ marginTop: '15px'}} onChange={ (e) => setDefault(e.target.value, result.serviceCode)}  className="app-select w-select">
-                                    <option selected disabled>Select Default Provider</option>
+                                    <option defaultValue disabled>Select Default Provider</option>
                                       {
                                           providers.map(result => {
                                               return <option key={result.id} value={ result.providerCode }>{result.providerName}</option>

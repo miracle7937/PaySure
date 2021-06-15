@@ -69,17 +69,7 @@ export default function Overview(props) {
                       </div>
                     </div>
     </div>
-    {/* <div className='item'>
-    <div className="content-slide-box">
-                      <div className="content-info-card">
-                        <div className="div-block-2">
-                          <div className="slide-card-header">Transactions</div>
-                          <div className="slide-card-value">100</div>
-                        </div>
-                        <div className="slide-card-icon blue"></div>
-                      </div>
-                    </div>
-    </div> */}
+
 </OwlCarousel>
 <br/><br/>
 {/* <div className="basic-table-card">

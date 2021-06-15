@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import AddPermission from './addPermission'
+import {  getPermissionByUser, getPermissions } from '../../../../globalApi'
+import EmptyData from '../../../../components/ui/emptyData/emptyData'
 
 export default function Users({admin}) {
+  const [role, setRole] = useState({});
+  const [permissions, setPermissions] = useState([]);
+  const [permission, setPermission] = useState([]);
+  const [ addPermission, setAddPermission] = useState(false)
+  const [userData, setUserData] = useState({})
+
+
+  useEffect(() => {
+   getPermissions().then(result =>{ setPermissions(result)})
+  }, [])
+  
+    const toggleAddPermission = async (result) => {
+     await getPermissionByUser(result.username).then(result => setPermission(result))
+      setUserData(result)
+      addPermission ? setAddPermission(false) :  setAddPermission(true)
+    }
 
     return (
     <>
+              {
+           addPermission ? <AddPermission permission={permission} userData={userData} permissions = {permissions}  closeModal = {toggleAddPermission}/> : null
+              }
           <div className="content-header">Users</div>
       <div className="content-sub">Here are the list of users</div>
       <div className="app-table-actions">
@@ -16,6 +38,8 @@ export default function Users({admin}) {
         </div>
       </div>
       <div>
+      {
+                        admin.length <= 0 ? <EmptyData/> :
       <table className="app-table2">
                                   <thead>
                                       <tr className="app-table2-row">
@@ -26,6 +50,7 @@ export default function Users({admin}) {
                                     <th className="app-table2-header">Roles</th>
                                     <th className="app-table2-header">Last seen</th>
                                     <th className="app-table2-header">Status</th>
+                                    <th className="app-table2-header"></th>
                                   </tr>
                                   </thead>
                                   <tbody>
@@ -45,6 +70,7 @@ export default function Users({admin}) {
                                         : 
                                         <td className="app-table2-data table-inactive">Inactive</td>
                                         }
+                                         <td className="app-table2-data"><div onClick={() => {toggleAddPermission(result)}}  style={{cursor:'pointer',borderRadius:'5px',padding:"10px 15px",background:'#1b1b1b',color:'white'}}>Update</div></td>
                                   </tr>
                                         )
                                       })
@@ -54,6 +80,7 @@ export default function Users({admin}) {
                                   
                                   
                                   </table>
+}
       </div>
     </>
     )

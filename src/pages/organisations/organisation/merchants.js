@@ -1,6 +1,7 @@
 import React, { useState }  from 'react'
 import { Redirect, useParams } from 'react-router-dom'
 import MerForm from './addMerchant'
+import EmptyData from '../../../components/ui/emptyData/emptyData'
 export default function Merchants(props) {
 
   const [ addMerch, setaddMerch] = useState(false)
@@ -36,6 +37,8 @@ export default function Merchants(props) {
                     </div>
                 </div>
       <div>
+      {
+                        props.allMerchant.length <= 0 ? <EmptyData/> :
       <table className="app-table2">
                                   <thead>
                                       <tr className="app-table2-row">
@@ -52,7 +55,7 @@ export default function Merchants(props) {
   
                                   <tbody>
                                     {
-                                      props.merchants.map( result => {
+                                      props.allMerchant.map( result => {
                                         return (
                                            <tr key={ result.id } className="app-table2-row">
                                           <td className="app-table2-data"><input type = "checkbox" /></td>
@@ -72,6 +75,7 @@ export default function Merchants(props) {
                                   
                                   
                                   </table>
+}
       </div>
     </>
     )

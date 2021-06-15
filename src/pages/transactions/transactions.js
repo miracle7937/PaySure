@@ -9,6 +9,7 @@ import Loader from '../../components/ui/loader/loader'
 import ViewTrans from './viewTrans'
 import ExportReport from '../Export'
 import NumberFormat from 'react-number-format';
+import EmptyData from '../../components/ui/emptyData/emptyData'
 export default function Transactions() {
     
   const [transactions, setTransactions] = useState([]);
@@ -283,9 +284,15 @@ setLoader(false);
                     <div className="content-sub">Here are the latest report on Paysure Core</div>
                     </div>
                     <div className="app-table-buttons">
-                    <div onClick={toggleExport} style={{cursor:'pointer'}} className="table-button filter">Export Report<span className="table-button-icon"></span></div>
-                    </div>
+                    {
+                         transactions.length <= 0 ? '' : 
+                         <div onClick={toggleExport} style={{cursor:'pointer'}} className="table-button filter">Export Report<span className="table-button-icon"></span></div>
+
+                      }                    </div>
                 </div>
+                {
+              transactions.length <= 0 ? <EmptyData/> :
+                <div>
       <div className="app-table-actions">
         <div>
           <form className="app-table-select" onSubmit={filterByDate}>
@@ -370,7 +377,8 @@ setLoader(false);
          <div className="pag-s"><span style={{marginRight:'10px'}} className="pag-s-text">of</span><span className="pag-s-text">{transDetails.lastPage}</span></div>
        </div>
       </div>
-
+</div>
+}
 
     </div>
       <div className="app-admin-col-3">

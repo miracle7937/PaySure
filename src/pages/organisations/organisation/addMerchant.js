@@ -10,14 +10,12 @@ export default function AddBrand(props) {
     const merForm = {
         username: "",
         password: "",
+        transactionPin:"",
         merchantName: "",
         contactPersonName: "",
         phoneNumber: "",
         emailAddress: "",
         logoUrl: "",
-        accountNumber: "",
-        accountName: "",
-        bankName: "",
         bvn: "",
         accountType: "",
         addressLine1: "",
@@ -26,7 +24,7 @@ export default function AddBrand(props) {
         lga: "",
         city: "",
         bandName: "",
-        roleName: "b2b"
+        roleName: ""
     }
 
     const [ merData, setmerData] = useState(merForm)
@@ -109,6 +107,9 @@ export default function AddBrand(props) {
         <input onChange={ (e) => { setmerData({ ...merData, password: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Password"  required/>
         </div>
         <div className="form-flex-col">
+        <input onChange={ (e) => { setmerData({ ...merData, transactionPin: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Transaction Pin"  required/>
+        </div>
+        <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, merchantName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Merchant Name"  required/>
         </div>
         <div className="form-flex-col">
@@ -124,19 +125,7 @@ export default function AddBrand(props) {
         <input onChange={ (e) => { setmerData({ ...merData, logoUrl: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Logo Url"  required/>
         </div>
         <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountNumber: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Number"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Name"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, bankName: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Bank Name"  required/>
-        </div>
-        <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, bvn: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="BVN"  required/>
-        </div>
-        <div className="form-flex-col">
-        <input onChange={ (e) => { setmerData({ ...merData, accountType: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Account Type"  required/>
         </div>
         <div className="form-flex-col">
         <input onChange={ (e) => { setmerData({ ...merData, addressLine1: e.target.value  }) }} type="text" className="app-modal-form-field w-input"  placeholder="Address 1"  required/>
@@ -164,7 +153,7 @@ export default function AddBrand(props) {
         
             </select>
         </div>
-        {/* <div className="form-flex-col">
+        <div className="form-flex-col">
         <select required style={{ marginBottom: '30px'}} onChange={ (e) => setmerData({ ...merData, roleName: e.target.value  })}  className="app-select w-select">
               <option selected disabled>Select a Role</option>
               {
@@ -174,7 +163,7 @@ export default function AddBrand(props) {
               }
         
             </select>
-        </div> */}
+        </div>
         <div className="form-flex-col">
         <input value = { ip } onChange={ (e) => { setIp(e.target.value)}} type="text" className="app-modal-form-field w-input"  placeholder="IP Address" />
         <div style={{marginRight:"20px",marginTop:"-59px",display:"inline-block", float:'right', cursor: 'pointer', textDecoration: 'underline', color:'#c00'}} onClick={addtoArray}>Add IP</div>

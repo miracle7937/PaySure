@@ -9,7 +9,7 @@ export default function State({state, closeModal, message}) {
             
             <div> 
             <div className="alert-icon failed"></div>
-            <div className="alert-message">{message}</div>
+            <div className="alert-message" style={{width:'200px'}}>{message}</div>
             </div>
             
         } 

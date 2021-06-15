@@ -36,6 +36,8 @@ export default function Login(props) {
       localStorage.setItem('prov-tR', 10)
       localStorage.setItem('ser-tcP', 1)
       localStorage.setItem('ser-tR', 10)
+      localStorage.setItem('mer-tcP', 1)
+      localStorage.setItem('mer-tR', 10)
       props.history.push('/overview')
       }
       else {
