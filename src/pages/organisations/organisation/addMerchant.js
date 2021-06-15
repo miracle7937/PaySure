@@ -37,7 +37,6 @@ export default function AddBrand(props) {
     const [sessionId, setSessionId] = useState('')
    
 
-
     const addtoArray = () => {
         setIp('')
         setModalArray([...modalArray, ip])
@@ -70,8 +69,7 @@ export default function AddBrand(props) {
             setMessage(user.data.responseMessage)
           setLoader(false);
           setFormState2(true);
-          setFormStateType2('success')   
-        
+          setFormStateType2('success')
           }
           else {
             setMessage(user.data.responseMessage)

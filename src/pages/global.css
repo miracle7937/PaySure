@@ -240,3 +240,15 @@
   .app-table-select{
     display: flex;
   }
+
+  .form-flex {
+    display: flex;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    }
+
+    .form-flex-col-3 {
+      flex-basis: 33.3%;
+      margin-bottom: 10px;
+      padding-right: 20px;
+     }

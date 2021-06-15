@@ -20,11 +20,15 @@ export default function Users({admin}) {
       setUserData(result)
       addPermission ? setAddPermission(false) :  setAddPermission(true)
     }
+    const closeAddPermission = async () => {
+
+       addPermission ? setAddPermission(false) :  setAddPermission(true)
+     }
 
     return (
     <>
               {
-           addPermission ? <AddPermission permission={permission} userData={userData} permissions = {permissions}  closeModal = {toggleAddPermission}/> : null
+           addPermission ? <AddPermission permission={permission} userData={userData} permissions = {permissions}  closeModal = {closeAddPermission}/> : null
               }
           <div className="content-header">Users</div>
       <div className="content-sub">Here are the list of users</div>

@@ -731,6 +731,18 @@ body {
   font-size: 16px;
   font-weight: 700;
 }
+.content-header-4 {
+  margin-bottom: 10px;
+  color: #131573;
+  font-size: 15px;
+  font-weight: 700;
+}
+.content-amount {
+  margin-bottom: 10px;
+  color: #131573;
+  font-size: 20px;
+  font-weight: 900;
+}
 
 .content-sub-2 {
   color: #999;
@@ -1181,14 +1193,14 @@ body {
 
 .details-header {
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .details-value {
   color: #6a6a6a;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
 }
 

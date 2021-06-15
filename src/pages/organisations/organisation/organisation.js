@@ -15,7 +15,6 @@ export default function Product() {
     const [merchantsCustom, setMerchantsCustom] = useState([])
     const [bands, setBands] = useState([]);
     const [b2b, setB2b] =useState(false)
-    const [b2bCustom, setB2bCustom] =useState(false)
     const[allMerchant, setAllMerchant] =useState([])
     let { id } = useParams();
 
@@ -23,9 +22,9 @@ export default function Product() {
   useEffect( () => {
     getRoles().then(result => { setAdminRoles(result)})
     getOrganisation(id).then(result => setOrg(result))
-    getMerchantsB2B(id).then(result => {setMerchants(result); setB2b(true)})
-    getMerchantsB2BCustom(id).then(result => setMerchantsCustom(result))
-    getBands().then(result => { setBands(result)})
+    getMerchantsB2B(id).then(result => {setMerchants(result);})
+    getMerchantsB2BCustom(id).then(result => {setMerchantsCustom(result)})
+    getBands().then(result => { setBands(result); setB2b(true)})
   }, [])
 
 

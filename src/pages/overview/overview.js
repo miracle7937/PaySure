@@ -167,14 +167,37 @@ export default function Overview(props) {
 </OwlCarousel>
 <br/><br/>
               <div className="basic-table-card">
-                <div className="content-header-2">Business Revenue</div>
+                <div className="app-table-actions">
+                    <div className="app-table-search">
+                    <div className="content-header-2">Business Revenue Stats</div>
+                    <div className="content-header-4">Monthly Stats</div>
+                    </div>
+                    <div className="app-table-buttons">
+                    <input type="month" id="start"/>
+                    </div>
+                </div>
+                <br/>
+                <div className="details-flex">
+          <div className="details-div-x">
+          <div className="details-header">Total Transaction</div>
+          <div className="details-value">N12,000,000</div>
+          </div>
+          <div className="details-div-x">
+            <div className="details-header">Total Settlements</div>
+            <div className="details-value">N20,000,000</div>
+          </div>
+          <div className="details-div-x">
+            <div className="details-header">Income</div>
+            <div className="details-value">N60,000</div>
+          </div> 
+          </div>
                 <div className="analytics-div">
                   <div className="analytics-graph">
                   <Line height= "200" data={data} options={options} />
                   </div>
                   <div className="analytics-graph-2">
-                    <div className="content-header-3">Monthly Target</div>
-                    <div className="content-sub-2">Average Total Sales</div>
+                    <div className="content-header-3">Monthly Revenue</div>
+                    <div className="content-amount">N200,000.00</div>
                     <div className="content-graph">
                                          <div className="doughnut-div">
                    <Doughnut data={data2} />
@@ -183,6 +206,42 @@ export default function Overview(props) {
 
                   </div>
                 </div>
+                <br/><br/><br/><br/>
+                <div className="app-table-actions">
+                    <div className="app-table-search">
+                    <div className="content-header-4">Daily Stats</div>
+                    </div>
+                    <div className="app-table-buttons">
+                    <input type="date" id="start"/>
+                    </div>
+                </div>
+                <br/><br/>
+                <div className="details-flex">
+          <div className="details-div">
+          <div className="details-header">Transaction Count</div>
+          <div className="details-value">240</div>
+          </div>
+          <div className="details-div">
+            <div className="details-header">Success Transaction Count</div>
+            <div className="details-value">70</div>
+          </div>
+          <div className="details-div">
+            <div className="details-header">Failed Transaction Count</div>
+            <div className="details-value">55</div>
+          </div> 
+          <div className="details-div">
+            <div className="details-header">Transaction Amount</div>
+            <div className="details-value">N2,000,000</div>
+          </div>
+          <div className="details-div">
+            <div className="details-header">Total Settlements</div>
+            <div className="details-value">N2,000,000</div>
+          </div>
+          <div className="details-div">
+            <div className="details-header">Income</div>
+            <div className="details-value">N100,000</div>
+          </div>       
+        </div>
               </div>
               <div className="basic-table-card">
                 <div className="table-header">
