@@ -252,3 +252,17 @@
       margin-bottom: 10px;
       padding-right: 20px;
      }
+
+
+     .verify-content{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+       background: rgb(243, 243, 243);
+     }
+
+     .verify-div{
+       width: 500px;
+       text-align: center;
+     }

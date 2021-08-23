@@ -14,6 +14,7 @@ import UserManagement from './pages/user-management/user'
 import CreateRole from './pages/user-management/Roles/createRoles'
 import EditRole from './pages/user-management/Roles/editRoles'
 import Settings from './pages/settings/settings'
+import VerifyEmail from './pages/verify-email/verifiy-email'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
      <Route path='/user-management' component = { UserManagement } />   
      <Route path='/create-role/:id' component = { CreateRole } />   
      <Route path='/edit-role/:id' component = { EditRole } />   
+     <Route path='/verifyemail/:id' component = { VerifyEmail } />   
       </Switch>
     </BrowserRouter>
   );

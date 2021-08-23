@@ -25,13 +25,13 @@ export default function Services(props) {
     useEffect( () => {
       setNewPage(defaultPage)
       setNewRecord(defaultRecords)
+      getServiceProviders().then(result => setProviders(result));
+      getCategory().then(result => setCategory(result));
       getServicesAll(defaultPage,defaultRecords).then(async(result) => {
          setSerDetails(result); 
          setServices(result.data);
       });
-     
-        getServiceProviders().then(result => setProviders(result));
-        getCategory().then(result => setCategory(result));
+    
       }, [])
 
 

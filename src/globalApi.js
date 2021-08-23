@@ -712,3 +712,5 @@ export async function getTerminal() {
     return empty}
     
 }
+
+
