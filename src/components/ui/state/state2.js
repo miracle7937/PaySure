@@ -12,7 +12,7 @@ export default function State2({state, closeModal, closeSession, message, sessio
              </div> : 
             
             <div> 
-            <div className="alert-icon failed"></div>
+            <div style={{ color: 'orange'}} className="alert-icon failed"></div>
             <div className="alert-message"  style={{width:'200px'}}>{message}</div>
             <div onClick={closeModal} style={{marginTop:'15px',cursor:'pointer'}} className="app-modal-button">Try again</div>
             </div>    

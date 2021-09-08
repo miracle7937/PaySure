@@ -15,6 +15,7 @@ import CreateRole from './pages/user-management/Roles/createRoles'
 import EditRole from './pages/user-management/Roles/editRoles'
 import Settings from './pages/settings/settings'
 import VerifyEmail from './pages/verify-email/verifiy-email'
+import VerifyOtp from './pages/verify-otp/verifyOtp'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
      <Route path='/create-role/:id' component = { CreateRole } />   
      <Route path='/edit-role/:id' component = { EditRole } />   
      <Route path='/verifyemail/:id' component = { VerifyEmail } />   
+     <Route path='/verifyotp/:id' component = { VerifyOtp } />   
       </Switch>
     </BrowserRouter>
   );

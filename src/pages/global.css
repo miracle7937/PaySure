@@ -266,3 +266,43 @@
        width: 500px;
        text-align: center;
      }
+     
+
+     .verify-otp-content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: rgb(243, 243, 243);
+    }
+
+    .verify-otp-div{
+      background: white;
+      width: 500px;
+      text-align: left;
+      padding: 50px;
+      border-radius: 20px;
+    }
+
+    .verify-otp-div-header{
+      font-size: 20px;
+      color: rgb(30, 30, 30);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .verify-otp-div-sub{
+      font-size: 13px;
+      color: rgb(179, 179, 179);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .resend-text{
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .resend-icon{
+      font-size: 17px;
+      font-family: 'Ionicons';
+    }

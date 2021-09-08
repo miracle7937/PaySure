@@ -45,12 +45,27 @@ export default function VerifyEmail() {
               
               <div className="verify-content">
               <div className="verify-div">
-                  { status ? <div className="alert-icon"></div> :  <div className="alert-icon failed"></div> }
+                  { status ? 
+                  <div>
+                  <div className="alert-icon"></div> 
            
              <br/>
                    <div className="alert-message" >{message}</div>
                    <br/>
                    <Link to="/"><div style={{marginTop:'15px',cursor:'pointer'}} className="app-modal-button">Go to Login</div></Link> 
+                  </div>
+                   :  
+                   <div>
+                   <div style={{color: 'orange'}} className="alert-icon failed"></div> 
+                   <br/>
+                   <div className="alert-message" >{message}</div>
+                   <br/>
+                   <Link to={"/verifyotp/" + id }><div style={{marginTop:'15px',cursor:'pointer'}} className="app-modal-button">Verify Phone Number</div></Link> 
+                  </div>
+                   
+                   }
+
+
               </div>
               </div>    
               

@@ -8,7 +8,7 @@ export default function State({state, closeModal, message}) {
             state == 'success' ?  <div > <div className="alert-icon"></div> <div className="alert-message">{message}</div> </div> : 
             
             <div> 
-            <div className="alert-icon failed"></div>
+            <div  style={{ color: 'orange'}}  className="alert-icon failed"></div>
             <div className="alert-message" style={{width:'200px'}}>{message}</div>
             </div>
             
