@@ -25,7 +25,12 @@ export default function FundProvider(props) {
         setLoader(true)
         const local_token = localStorage.getItem('token');
         try {
-            const user = await axios.post(url.url + '/services/providers/fund', provData, {
+            const user = await axios.post(url.url + '/services/providers/fund', {
+       amountFunded: parseInt(provData.amountFunded),
+        dateFunded: provData.dateFunded,
+        providerId: parseInt(provData.providerId),
+        serviceId: parseInt(provData.serviceId),
+            }, {
                 headers: {
                     'Authorization': `Bearer ${local_token}` 
                   }
@@ -64,7 +69,26 @@ export default function FundProvider(props) {
           <form onSubmit={ FundProvider }>
           <input onChange={ (e) => { setprovData({ ...provData, amountFunded: e.target.value  }) }} type="number" className="app-modal-form-field w-input"  placeholder="Amount"  required/>
           <input onChange={ async (e) => { let date = moment(e.target.value).format('DD-MM-YYYY');setprovData({ ...provData, dateFunded: date  }) }} type="date" className="app-modal-form-field w-input"  placeholder="Date"  required/>
-          <select required style={{ marginBottom: '30px'}} onChange={ (e) => setprovData({ ...provData, serviceId: e.target.value  })}  className="app-select w-select">
+
+          <select style={{ marginTop: '15px'}} onChange={ (e) => props.getServices(e.target.value)}  className="app-select w-select">
+                                    <option>Select a Category</option>
+                                      {
+                                          props.category.map(result => {
+                                              return <option key={result.id} value={ result.categoryName }>{result.categoryDescription}</option>
+                                          })
+                                      }
+                                
+                                    </select>
+                                    <select required style={{ marginBottom: '30px'}} onChange={ (e) => setprovData({ ...provData, serviceId: e.target.value  })}   className="app-select w-select">
+                                    <option>Select a Service</option>
+                                      {
+                                          props.services.map(result => {
+                                              return <option key={result.id} value={ result.id }>{result.serviceName}</option>
+                                          })
+                                      }
+                                
+                                    </select>
+          {/* <select required style={{ marginBottom: '30px'}} onChange={ (e) => setprovData({ ...provData, serviceId: e.target.value  })}  className="app-select w-select">
               <option value="0">Select a Service</option>
               {
                   props.services.map(result => {
@@ -72,7 +96,7 @@ export default function FundProvider(props) {
                   })
               }
         
-            </select>
+            </select> */}
           <button type="submit" style={{marginTop:'20px',display:'block', cursor:'pointer'}} className="app-modal-button">Save Changes</button>
         </form>
       </div>

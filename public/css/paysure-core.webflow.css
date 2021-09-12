@@ -1019,9 +1019,11 @@ body {
   padding: 35px 46px 30px;
   border-radius: 20px;
   background-color: #fff;
+  word-break: break-all;
 }
 
 .app-modal-div.success {
+  word-break: break-all;
   padding: 100px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1102,8 +1104,8 @@ body {
 
 .alert-message {
   color: #191919;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .role-descrip-div {

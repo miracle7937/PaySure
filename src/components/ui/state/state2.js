@@ -6,14 +6,14 @@ export default function State2({state, closeModal, closeSession, message, sessio
     <div className="app-modal-div success" style={{ textAlign:'center'}}>
         {
             state == 'success' ?  <div > <div className="alert-icon"></div>
-             <div className="alert-message"  style={{width:'200px'}}>{message}</div>
+             <p className="alert-message"  >{message}</p>
              <div style={{marginTop:'15px', fontSize:'13px'}}>{sessionId}</div>
             <div onClick={closeSession} style={{marginTop:'15px',cursor:'pointer'}} className="app-modal-button">Close</div>
              </div> : 
             
             <div> 
             <div style={{ color: 'orange'}} className="alert-icon failed"></div>
-            <div className="alert-message"  style={{width:'200px'}}>{message}</div>
+            <p className="alert-message" >{message}</p>
             <div onClick={closeModal} style={{marginTop:'15px',cursor:'pointer'}} className="app-modal-button">Try again</div>
             </div>    
         } 

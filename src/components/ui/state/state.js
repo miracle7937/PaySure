@@ -5,11 +5,11 @@ export default function State({state, closeModal, message}) {
         <div style={{ zIndex : 999999 }}className="app-modal-overlay">
     <div className="app-modal-div success" style={{ textAlign:'center'}}>
         {
-            state == 'success' ?  <div > <div className="alert-icon"></div> <div className="alert-message">{message}</div> </div> : 
+            state == 'success' ?  <div > <div className="alert-icon"></div> <p className="alert-message">{message}</p> </div> : 
             
             <div> 
             <div  style={{ color: 'orange'}}  className="alert-icon failed"></div>
-            <div className="alert-message" style={{width:'200px'}}>{message}</div>
+            <p className="alert-message" >{message}</p>
             </div>
             
         } 

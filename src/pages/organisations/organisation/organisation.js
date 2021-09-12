@@ -23,19 +23,19 @@ export default function Product() {
     getRoles().then(result => { setAdminRoles(result)})
     getOrganisation(id).then(result => setOrg(result))
     getMerchantsB2B(id).then(result => {setMerchants(result);})
-    getMerchantsB2BCustom(id).then(result => {setMerchantsCustom(result)})
+    // getMerchantsB2BCustom(id).then(result => {setMerchantsCustom(result)})
     getBands().then(result => { setBands(result); setB2b(true)})
   }, [])
 
 
-  useEffect(() => {
-    function allMerchant(){
-      const allMerc = [...merchants,...merchantsCustom]
-      console.log("allll>>>>>",allMerc)
-      setAllMerchant(allMerc)
-    }
-  allMerchant()
-  }, [b2b])
+  // useEffect(() => {
+  //   function allMerchant(){
+  //     const allMerc = [...merchants,...merchantsCustom]
+  //     console.log("allll>>>>>",allMerc)
+  //     setAllMerchant(allMerc)
+  //   }
+  // allMerchant()
+  // }, [b2b])
 
 
 
@@ -79,7 +79,7 @@ export default function Product() {
       </div>
 
       { overview ? <Overview organisation ={organisation}/> 
-      : users ? <Merchants roles= {adminRoles} bands={bands} organisation ={organisation} allMerchant = {allMerchant} updateList={updateList} />
+      : users ? <Merchants roles= {adminRoles} bands={bands} organisation ={organisation} allMerchant = {merchants} updateList={updateList} />
       : <Overview organisation ={organisation}/> }
 
     </div>

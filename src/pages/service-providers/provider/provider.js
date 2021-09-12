@@ -7,7 +7,8 @@ import Overview from './overview'
 import Transactions from './transactions'
 import Charges from './charges'
 import Settlements from './settlements'
-import { getServiceProvider, getCharges,getServices,getTransactionsProvider,getWalletBalance } from '../../../globalApi'
+import {getServiceCategory,getCategory, getServiceProvider, getCharges,getTransactionsProvider,getWalletBalance } from '../../../globalApi'
+import Loader from '../../../components/ui/loader/loader'
 
 export default function Provider() {
         
@@ -18,26 +19,28 @@ export default function Provider() {
     const [provider, setProvider] = useState({})
     const [chargesData, setChargesData] = useState([])
     const [transData, setTransData] = useState([])
-    const [services, setServices] = useState([]);
+    const [ category, setCategory] = useState([]);
+    const [ services, setServices] = useState([]);
     const[wallet, setWallet] = useState({})
-    const [newpage, setNewPage] = useState(0)
-    const [newrecord, setNewRecord] = useState(10)
-    let defaultPage = localStorage.getItem('tcP')
-    let defaultRecords = localStorage.getItem('tR')
+    const [loader, setLoader] = useState(false)
+
     let {id} = useParams();
 
     useEffect( async () => {
-     console.log(id)
-     getServices().then(result => setServices(result));
-     await getServiceProvider(id).then(result => {
-     setProvider(result); 
-     getCharges(result.id).then(result => {setChargesData(result)} )} )
+      await getServiceProvider(id).then(result => {
+        setProvider(result); 
+        getCharges(result.id).then(result => {setChargesData(result)} )} )
 
+      getCategory().then(result => setCategory(result));
      getTransactionsProvider().then(result => { setTransData(result)});
 
         getWalletBalance(id).then(result => setWallet(result));  
       },[])
 
+      const getServices = (service) => {
+        setLoader(true)
+        getServiceCategory(1,100,service).then((result) => {setServices(result.data); setLoader(false)});
+        }
 
     const changeOverview = () => {
       setOverview(true)
@@ -73,6 +76,7 @@ export default function Provider() {
 
         return(
             <div className="app-admin-section">
+               { loader? <Loader/> : null }
             <div className="app-admin-col-1">
             <Leftbar/>
             </div>
@@ -90,11 +94,11 @@ export default function Provider() {
         </div>
       </div>
 
-      { overview ? <Overview wallet={wallet} provider= {provider} services={services}/> 
+      { overview ? <Overview wallet={wallet} provider= {provider} services={services} category={category} getServices={getServices}/> 
       : settlement ? <Settlements provider= {provider}/>
       : transactions ? <Transactions transData={transData} provider= {provider}/>
       : charges ? <Charges chargesData={chargesData} provider= {provider}/>
-      : <Overview wallet={wallet} provider= {provider} services={services}/> }
+      : <Overview wallet={wallet} provider= {provider} services={services} category={category} getServices={getServices}/> }
 
 
     </div>

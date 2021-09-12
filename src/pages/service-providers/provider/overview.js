@@ -22,7 +22,7 @@ export default function Overview(props) {
     <>
                   {
                updateProvider ? <EditProvider provider = {props.provider} closeModal = {toggleEditProvider}/> :
-               fundWallet ? <FundProvider services ={props.services} provider = {props.provider} closeModal = {toggleFundProvider}/> : null
+               fundWallet ? <FundProvider category={props.category} getServices={props.getServices} services ={props.services} provider = {props.provider} closeModal = {toggleFundProvider}/> : null
               }
 <div className="app-table-actions">
                     <div className="app-table-search">

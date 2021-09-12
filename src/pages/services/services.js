@@ -16,6 +16,7 @@ export default function Services(props) {
     const [formStateType, setFormStateType] = useState('success')
     const [newpage, setNewPage] = useState(0)
     const [newrecord, setNewRecord] = useState(10)
+    const [message, setMessage] = useState('')
 
     let defaultPage = localStorage.getItem('ser-tcP')
     let defaultRecords = localStorage.getItem('ser-tR')
@@ -132,11 +133,13 @@ export default function Services(props) {
         setLoader(false);
         setFormState(true);
         setFormStateType('success')
+        setMessage(user.data.responseMessage)
         }
-        else if(user.data.responseCode === 400 || 500 ) {
+        else  {
           setLoader(false);
         setFormState(true);
         setFormStateType('failed')
+        setMessage(user.data.responseMessage)
         }
        }
        catch(e){console.log(e)}
@@ -175,7 +178,7 @@ export default function Services(props) {
     
         return(
             <>
-             { formState ? <State closeModal={resetState} state = {formStateType} /> : null }
+             { formState ? <State  message={message} closeModal={resetState} state = {formStateType} /> : null }
              { loader ? <Loader/> : null }
 
             <div className="content-header">Services</div>
@@ -225,7 +228,7 @@ export default function Services(props) {
                                       <td className="app-table2-data">{result.defaultProviderName}</td>
                                       <td className="app-table2-data">
                                     <select style={{ marginTop: '15px'}} onChange={ (e) => setDefault(e.target.value, result.serviceCode)}  className="app-select w-select">
-                                    <option defaultValue disabled>Select Default Provider</option>
+                                    <option value="0">Select Default Provider</option>
                                       {
                                           providers.map(result => {
                                               return <option key={result.id} value={ result.providerCode }>{result.providerName}</option>

@@ -18,6 +18,7 @@ export default function AddBrand(props) {
     const [loader, setLoader] = useState(false)
     const [formState, setFormState] = useState(false)
     const [formStateType, setFormStateType] = useState('success')
+    const [message, setMessage] = useState('')
 
     const updateBand = async(e) => {
         e.preventDefault();
@@ -34,11 +35,14 @@ export default function AddBrand(props) {
           setLoader(false);
           setFormState(true);
           setFormStateType('success')
+          setMessage(user.data.responseMessage)
+     
           }
           else {
             setLoader(false);
           setFormState(true);
           setFormStateType('failed')
+          setMessage(user.data.responseMessage)
           }
          }
          catch(e){console.log(e)}
@@ -46,12 +50,12 @@ export default function AddBrand(props) {
 
     const resetState = () => {
         setFormState(false)
-      props.closeModal()
+    
     }
     return(
         <>
         {
-            formState ? <State closeModal={resetState} state = {formStateType} /> :
+            formState ? <State message={message} closeModal={resetState} state = {formStateType} /> :
               <div className="app-modal-overlay">
       <div className="app-modal-div">
           { loader? <Loader/> : null }
