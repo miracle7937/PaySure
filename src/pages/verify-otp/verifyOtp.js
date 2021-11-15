@@ -28,7 +28,7 @@ export default function VerifyOtp() {
             const result2 = await axios.get(process.env.REACT_APP_BACKEND_URL + '/verifyemail/' + id)
 
             if(result2.data.responseCode === 0){
-                            setLoader(false);
+            setLoader(false);
             setStatus(true);
             setState('success');
             setMessage(result2.data.responseMessage)
